@@ -5,7 +5,8 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: mode === 'production' ? '/Online_Voting_System/' : '/',
+  // Use /Online_Voting_System/ for GitHub Pages, / for Docker/local
+  base: process.env.DEPLOY_TARGET === 'github-pages' ? '/Online_Voting_System/' : '/',
   server: {
     host: "::",
     port: 5173,

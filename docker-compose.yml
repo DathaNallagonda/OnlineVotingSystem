@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  voting-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
+        - VITE_SUPABASE_PUBLISHABLE_KEY=${VITE_SUPABASE_PUBLISHABLE_KEY}
+        - VITE_SUPABASE_PROJECT_ID=${VITE_SUPABASE_PROJECT_ID}
+    container_name: election-voting-system
+    ports:
+      - "8080:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - voting-network
+
+networks:
+  voting-network:
+    driver: bridge
